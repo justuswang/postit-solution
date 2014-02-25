@@ -1,0 +1,15 @@
+<table>
+	<tr>
+		<th>Url</th>
+		<th>Title</th>
+		<th>Description</th>
+		<th>User</th>
+	</tr>
+	<tr>
+		<td><%= @post.url %></td>
+		<td><%= @post.title %></td>
+		<td><%= @post.description %></td>
+		<td><%= @post.user.username %></td>
+	</tr>
+</table>
+<%= link_to 'back', posts_path %>
