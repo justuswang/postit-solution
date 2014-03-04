@@ -9,7 +9,15 @@
 		<td><%= @post.url %></td>
 		<td><%= @post.title %></td>
 		<td><%= @post.description %></td>
-		<td><%= @post.user.username %></td>
+		<td><%= @post.creator.username %></td>
 	</tr>
 </table>
 <%= link_to 'back', posts_path %>
+
+
+<h5>Create a comment</h5>
+<%= form_for [@post, @comment] do |f| %>
+  <%= f.text_area :body %>
+  <br/>
+  <%= f.submit "Create Comment", class: "btn btn-primary" %>
+<% end %>

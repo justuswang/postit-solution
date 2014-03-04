@@ -1,11 +1,14 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update]
+  # 1. set up instance variable for action
+  # 2. redirect based on some condition
 
   def index
     @posts = Post.all
   end
 
   def show
+    @comment = Comment.new
   end
 
   def new
@@ -15,6 +18,8 @@ class PostsController < ApplicationController
   def create
     # binding.pry
     @post = Post.new(post_params)
+    @post.creator = User.first
+
     if @post.save
       flash[:notice] = "Your post was created."
       redirect_to posts_path
