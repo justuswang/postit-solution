@@ -3,14 +3,15 @@
 <p>This is the Postit template. You've access the PostsController, index action. This is the index template. Find me under app/views/posts folder.</p-->
 <h1>Listing Posts</h1>
 <table>
-	<tr>
-		<th>Title</th>
-		<th></th>
-	</tr>
-	<% @posts.each do |post| %>
-		<tr>
-			<td><%= post.title %></td>
-			<td><%= link_to 'Show', post %></td>
-		</tr>
-	<% end %>
+  <tr>
+    <th>Title</th>
+    <th></th>
+  </tr>
+  <% @posts.each do |post| %>
+    <tr>
+      <td><%= post.title %></td>
+      <td><%= link_to 'Show', post %></td>
+      <td><%= link_to 'edit', edit_post_path(post) %></td>
+    </tr>
+  <% end %>
 </table>
