@@ -1,0 +1,12 @@
+<%= render 'common/content_title', title: "New Category" %>
+<%= render 'common/errors', obj: @category %>
+
+<div class="well">
+<%= form_for @category do |f| %>
+  <div class="control-group">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <%= f.submit(@category.new_record? ? "Create Category" : "Update Category", class: "btn btn-primary") %>
+<% end %>
+</div>

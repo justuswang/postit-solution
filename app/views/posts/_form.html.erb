@@ -1,13 +1,4 @@
-<% if @post.errors.any? %>
-  <div class="alert alert-error">
-    <h5>There were some errors:</h5>
-    <ul>
-      <% @post.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+<%= render 'common/errors', obj: @post %>
 
 <div class="well">
 <%= form_for @post do |f| %>
@@ -21,7 +12,13 @@
   </div>
   <div class="control-group">
     <%= f.label :description %>
-    <%= f.text_field :description %>
+    <%= f.text_area :description, rows: 5 %>
+  </div>
+  <div class='control-group'>
+    <%= f.label 'Categories' %>
+    <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |checkbox| %>
+      <% checkbox.label(class: 'checkbox inline') {checkbox.check_box(class: 'checkbox') + checkbox.text} %>
+    <% end %>
   </div>
   <%= f.submit(@post.new_record? ? "Create Post" : "Update Post", class: "btn btn-primary") %>
 <% end %>

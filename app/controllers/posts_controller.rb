@@ -40,8 +40,10 @@ class PostsController < ApplicationController
     end
   end
 
+  private
+
   def post_params
-    params.require(:post).permit(:title, :url, :creator, :description)
+    params.require(:post).permit(:title, :url, :creator, :description, category_ids: [])
   end
 
   def set_post

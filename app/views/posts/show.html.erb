@@ -1,23 +1,27 @@
-<table>
-	<tr>
-		<th>Url</th>
-		<th>Title</th>
-		<th>Description</th>
-		<th>User</th>
-	</tr>
-	<tr>
-		<td><%= @post.url %></td>
-		<td><%= @post.title %></td>
-		<td><%= @post.description %></td>
-		<td><%= @post.creator.username %></td>
-	</tr>
-</table>
-<%= link_to 'back', posts_path %>
+<p class='pull-right'>
+	[<%= link_to 'edit this post', edit_post_path(@post) %>]
+</p>
 
+<p><%= render @post.categories %></p>
+<%= render 'common/content_title', title: @post.title %>
+<p><%= @post.description %></p>
+<hr/>
 
-<h5>Create a comment</h5>
 <%= form_for [@post, @comment] do |f| %>
-  <%= f.text_area :body %>
-  <br/>
+	<%= render 'common/errors', obj: @comment %>
+	<div class='control-grouop'>
+		<%= f.label :body, 'Leave a comment' %>
+	  <%= f.text_area :body, rows: 3, class: 'span4' %>
+	</div>
   <%= f.submit "Create Comment", class: "btn btn-primary" %>
+<% end %>
+
+<p>Comments:</p>
+<% @post.comments.each do |comment| %>
+	<div class='well span8'>
+		<em>"<%= comment.body %>"</em>
+		<br/>
+		<span class='quiet'>by</span> <%= comment.user.username %>
+    <small>at <%= comment.created_at %></small>
+	</div>
 <% end %>
