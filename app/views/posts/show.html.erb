@@ -1,27 +1,31 @@
-<p class='pull-right'>
-	[<%= link_to 'edit this post', edit_post_path(@post) %>]
-</p>
+<% if logged_in? %>
+  <p class='pull-right'>
+    [<%= link_to 'edit this post', edit_post_path(@post) %>]
+  </p>
+<% end %>
 
 <p><%= render @post.categories %></p>
 <%= render 'common/content_title', title: @post.title %>
 <p><%= @post.description %></p>
 <hr/>
 
-<%= form_for [@post, @comment] do |f| %>
-	<%= render 'common/errors', obj: @comment %>
-	<div class='control-grouop'>
-		<%= f.label :body, 'Leave a comment' %>
-	  <%= f.text_area :body, rows: 3, class: 'span4' %>
-	</div>
-  <%= f.submit "Create Comment", class: "btn btn-primary" %>
+<% if logged_in? %>
+  <%= form_for [@post, @comment] do |f| %>
+    <%= render 'common/errors', obj: @comment %>
+    <div class='control-grouop'>
+      <%= f.label :body, 'Leave a comment' %>
+      <%= f.text_area :body, rows: 3, class: 'span4' %>
+    </div>
+    <%= f.submit "Create Comment", class: "btn btn-primary" %>
+  <% end %>
 <% end %>
 
 <p>Comments:</p>
 <% @post.comments.each do |comment| %>
-	<div class='well span8'>
-		<em>"<%= comment.body %>"</em>
-		<br/>
-		<span class='quiet'>by</span> <%= comment.user.username %>
+  <div class='well span8'>
+    <em>"<%= comment.body %>"</em>
+    <br/>
+    <span class='quiet'>by</span> <%= comment.user.username %>
     <small>at <%= display_datetime(comment.created_at) %></small>
-	</div>
+  </div>
 <% end %>
