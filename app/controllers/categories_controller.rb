@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :require_user, :only [:new, :create]
+  before_action :require_user, only: [:new, :create]
   def new
     @category = Category.new
   end

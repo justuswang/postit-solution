@@ -29,7 +29,30 @@
     <%= link_to 'New Post', new_post_path, class: 'btn btn-small btn-success' %>
   </div>
   <div class='btn-group nav_item'>
-    <%= link_to 'Log out', logout_path, class: 'btn btn-small' %>
+    <%= link_to '', class: 'btn btn-small dropdown-toggle', 'data-toggle' => 'dropdown' do %>
+      <%= current_user.username if current_user%>
+      <span class='caret'></span>
+    <% end %>
+    <ul class='dropdown-menu'>
+      <li>
+        <%= link_to edit_user_path(current_user) do%>
+          <i class='icon-pencil'></i>
+            Edit Profile
+        <% end %>
+      </li>
+      <li>
+        <%= link_to user_path(current_user) do%>
+          <i class='icon-user'></i>
+            View Profile
+        <% end %>
+      </li>
+      <li>
+        <%= link_to logout_path do%>
+          <i class='icon-circle-arrow-left'></i>
+            Logout
+        <% end %>
+      </li>
+    </ul>
   </div>
 <% else %>
   <div class='btn-group nav_item'>

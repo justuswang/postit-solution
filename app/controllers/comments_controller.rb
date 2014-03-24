@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     @comment = @post.comments.build(params.require(:comment).permit(:body))
     # @comment = Comment.new(params.require(:comment).permit(:body))
     # @comment.post = @post
-    @comment.user = current_user
+    @comment.creator = current_user
 
     if @comment.save
       flash[:notice] = "Comment was added."
