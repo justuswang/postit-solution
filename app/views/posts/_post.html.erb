@@ -4,7 +4,7 @@
       <i class='icon-arrow-up'></i>
     <% end %>
     <br/>
-    <span id='post_<%= post.id %>_vote'><%= post.total_votes %></span>votes
+    <span id="post_<%= post.id %>_votes"><%= post.total_votes %> votes</span>
     <br/>
     <%= link_to vote_post_path(post, vote: false), method: 'post', remote: true do %>
       <i class='icon-arrow-down'></i>
